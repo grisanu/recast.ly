@@ -1,15 +1,21 @@
-var VideoList = () => (
-  <div className="video-list media">
-    <VideoListEntry />
-    <VideoListEntry />
-    <VideoListEntry />
-    <VideoListEntry />
-    <VideoListEntry />
-    <VideoListEntry />
-    <VideoListEntry />
-    <VideoListEntry />
-    <VideoListEntry />
-  </div>
+// var VideoList = () => (
+//   <div className="video-list media">
+//     <VideoListEntry />
+//     <VideoListEntry />
+//     <VideoListEntry />
+//     <VideoListEntry />
+//     <VideoListEntry />
+//     <VideoListEntry />
+//     <VideoListEntry />
+//     <VideoListEntry />
+//     <VideoListEntry />
+//   </div>
+// );
+
+var VideoList = (props) => (
+  // props is an array
+  
+  // < {example}
 );
 
 // PropTypes tell other developers what `props` a component expects

@@ -4,17 +4,30 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      currentVideo: window.exampleVideoData[0],
-      videoList: window.exampleVideoData
+      currentVideo: { id: null },
+      videoList: []
     };
   }
 
-  titleClickHandler (videoObj) {
-    // is this.setState, when executed as callback in VideoListEntry, using the context of
-    // the parent App instance?
+  videoUpdate (items) {
     this.setState({
-      // this in the executed callback is equal to the videoListEntryTitle...how to get parent
-      // element elegantly/properly?
+      currentVideo: items[0],
+      videoList: items
+    });
+  }
+
+  componentDidMount () {
+    var options = {
+      key: window.YOUTUBE_API_KEY,
+      query: 'flowers',
+      maxResults: 5
+    };
+
+    this.props.searchYouTube(options, this.videoUpdate.bind(this));
+  }
+
+  videoListTitleClickHandler (videoObj) {
+    this.setState({
       currentVideo: videoObj
     });
   }
@@ -22,12 +35,12 @@ class App extends React.Component {
   render () {
     return (
       <div>
-        <Nav />
+        <Nav debouncedSearchYouTube={this.props.searchYouTube} videoUpdate={this.videoUpdate.bind(this)}/>
         <div className="col-md-7">
           <VideoPlayer video={this.state.currentVideo}/>
         </div>
         <div className="col-md-5">
-          <VideoList videos={this.state.videoList} clickHandler={this.titleClickHandler.bind(this)}/>
+          <VideoList videos={this.state.videoList} clickHandler={this.videoListTitleClickHandler.bind(this)}/>
         </div>
       </div>
     );

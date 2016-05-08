@@ -1,4 +1,5 @@
 var VideoPlayer = props => (
+  !props.video.id ? <div className="video-player"> Gabes loading... </div> :
   <div className="video-player">
     <div className="embed-responsive embed-responsive-16by9">
       <iframe className="embed-responsive-item" src={'https://www.youtube.com/embed/'.concat(props.video.id.videoId)} allowFullScreen></iframe>
